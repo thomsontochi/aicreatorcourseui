@@ -1,0 +1,1238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PromptEdit — Index 04 · The catalog of pay-as-you-make AI tools</title>
+<meta name="description" content="A printed catalog of every AI tool a maker actually opens. One credit balance. Zero subscriptions." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --y:#efe9d9;          /* saffron canvas */
+    --y2:#c8bc97;         /* deeper saffron rule */
+    --k:#1a2920;          /* jet black */
+    --k2:#243527;         /* near-black for inverted bg */
+    --cream:#f7f1de;      /* card cream */
+    --bone:#f0eadb;       /* type on black */
+    --r:#c14a2b;          /* blood red — emergency accent */
+    --muted-k:#5a6452;    /* muted dark on saffron */
+    --muted-c:#a8b3a9;    /* muted light on black */
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html,body{background:var(--y);color:var(--k);overflow-x:hidden;}
+  body{font-family:'Inter',ui-sans-serif,system-ui,sans-serif;font-feature-settings:"ss01","cv11";text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;}
+  .anton{font-family:'Anton',ui-sans-serif,system-ui,sans-serif;font-weight:400;letter-spacing:-0.005em;text-transform:uppercase;line-height:1.02;}
+  .mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;}
+  ::selection{background:var(--k);color:var(--y);}
+  p{text-wrap:pretty;}
+  hr{border:0;height:3px;background:var(--k);margin:0;}
+  .hairline{height:1px;background:var(--k);opacity:.4;}
+
+  /* Type scale */
+  .t-cover{font-size:clamp(72px, 14vw, 220px);line-height:0.92;}
+  .t-h1{font-size:clamp(48px, 8vw, 132px);line-height:1.0;}
+  .t-h2{font-size:clamp(38px, 5.6vw, 88px);line-height:1.04;}
+  .t-h3{font-size:clamp(28px, 3.4vw, 52px);line-height:1.08;}
+  .t-h4{font-size:clamp(22px, 2.4vw, 32px);line-height:1.15;}
+  .t-page{font-size:clamp(110px, 14vw, 220px);line-height:0.88;}
+
+  /* Page index nav (catalog table of contents style) */
+  .index-row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:baseline;padding:.55rem 0;border-bottom:1px dotted var(--k);}
+  .index-row .pn{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:0.08em;}
+  .index-row .nm{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:22px;letter-spacing:0.005em;}
+  .index-row .pg{font-family:'JetBrains Mono',monospace;font-size:11px;}
+
+  /* Highlight mark — emphasis treatment (box-shadow stripe keeps inline rendering tight) */
+  .mark{background:var(--k);color:var(--y);padding:0 .15em;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+  .mark-r{background:var(--r);color:var(--y);padding:0 .15em;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+  .mark-c{background:var(--cream);color:var(--k);padding:0 .15em;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+
+  /* Block borders */
+  .ruled{border:3px solid var(--k);background:var(--cream);}
+  .ruled-blk{border:3px solid var(--y);background:var(--k);color:var(--bone);}
+  .ruled-r{border:3px solid var(--r);background:var(--y);color:var(--k);}
+  .double{border-top:3px solid var(--k);border-bottom:3px solid var(--k);position:relative;}
+  .double::after{content:"";position:absolute;left:0;right:0;top:5px;height:1px;background:var(--k);}
+  .double::before{content:"";position:absolute;left:0;right:0;bottom:5px;height:1px;background:var(--k);}
+
+  /* SKU pill */
+  .sku{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--k);color:var(--y);padding:.25rem .55rem;letter-spacing:.04em;font-weight:600;}
+  .sku-out{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--y);color:var(--k);padding:.25rem .55rem;letter-spacing:.04em;font-weight:600;border:2px solid var(--k);}
+
+  /* Spec sheet card */
+  .spec{background:var(--cream);border:3px solid var(--k);padding:1rem;display:flex;flex-direction:column;gap:.7rem;}
+  .spec .top{display:flex;align-items:flex-start;justify-content:space-between;gap:.6rem;}
+  .spec .thumb{aspect-ratio:4/3;border:1.5px solid var(--k);background:var(--y);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .spec .nm{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:24px;line-height:0.92;letter-spacing:0.005em;}
+  .spec .desc{font-size:13px;line-height:1.45;color:var(--muted-k);}
+  .spec .stats{display:grid;grid-template-columns:1fr 1fr;gap:.35rem .8rem;font-family:'JetBrains Mono',monospace;font-size:11px;border-top:1px solid var(--k);padding-top:.55rem;}
+  .spec .stats span:nth-child(odd){color:var(--muted-k);}
+  .spec .stats span:nth-child(even){font-weight:600;text-align:right;}
+
+  /* Catalog page number marker */
+  .page-mark{display:flex;align-items:baseline;gap:.6rem;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;font-weight:600;text-transform:uppercase;}
+  .page-mark::before{content:"";display:inline-block;width:18px;height:3px;background:var(--k);}
+
+  /* Ticker strip */
+  .tick{display:flex;gap:34px;align-items:center;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;letter-spacing:0.02em;}
+  @keyframes tick-x { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .tick-track{animation:tick-x 60s linear infinite;}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.2rem;font-family:'Inter',sans-serif;font-weight:700;font-size:.92rem;letter-spacing:-0.005em;border:3px solid var(--k);transition:transform .15s ease, background .2s ease;text-transform:uppercase;}
+  .btn-blk{background:var(--k);color:var(--y);}
+  .btn-blk:hover{background:#000;}
+  .btn-y{background:var(--y);color:var(--k);}
+  .btn-y:hover{background:#fff;}
+  .btn-r{background:var(--r);color:#fff;border-color:var(--r);}
+  .btn-r:hover{background:var(--k);border-color:var(--k);color:var(--r);}
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--k);}
+
+  /* Form (order form) */
+  .order-line{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:.7rem 0;border-bottom:1.5px dashed var(--k);font-family:'JetBrains Mono',monospace;font-size:13px;}
+  .order-line .qty{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:2px solid var(--k);background:var(--y);font-weight:700;}
+
+  /* Stamps */
+  .stamp{
+    display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
+    border:2.5px solid var(--r);color:var(--r);
+    padding:.6rem 1rem;transform:rotate(-5deg);
+    font-family:'JetBrains Mono',monospace;text-transform:uppercase;
+  }
+  .stamp .big{font-family:'Anton',sans-serif;font-size:32px;line-height:1;letter-spacing:.01em;color:var(--r);}
+  .stamp .small{font-size:9px;letter-spacing:.16em;margin-top:3px;color:var(--r);}
+
+  /* Coupon / dashed bottom edge */
+  .coupon{position:relative;background:var(--cream);border:3px solid var(--k);padding:1.5rem;}
+  .coupon::after{
+    content:"";position:absolute;left:-3px;right:-3px;bottom:-12px;height:14px;
+    background-image:radial-gradient(circle at 7px 9px, var(--y) 5px, transparent 5.5px);
+    background-size:14px 14px;background-repeat:repeat-x;
+  }
+
+  /* Letter testimonial */
+  .letter{background:var(--cream);border:3px solid var(--k);padding:1.4rem;font-family:'Inter',sans-serif;font-size:15px;line-height:1.55;position:relative;}
+  .letter .from{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-top:1px solid var(--k);padding-top:.7rem;margin-top:1.1rem;}
+  .letter::before{content:"FROM:";position:absolute;top:-13px;left:14px;background:var(--y);color:var(--k);font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:0 6px;letter-spacing:.1em;}
+
+  /* Q-A */
+  .qa{border-bottom:1.5px dashed var(--k);padding:1rem 0;}
+  .qa .q{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:22px;line-height:1.1;}
+  .qa .a{font-size:14.5px;line-height:1.55;margin-top:.5rem;color:var(--muted-k);max-width:60ch;}
+
+  /* Section dividers */
+  .ch-marker{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;border-bottom:4px solid var(--k);padding-bottom:0.6rem;margin-bottom:1.4rem;}
+  .ch-marker .left{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;font-weight:600;text-transform:uppercase;}
+  .design-credit{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-k);display:flex;align-items:center;gap:.4rem;white-space:nowrap;}
+  .design-credit .mark{padding:0 .35em;}
+  .inv .design-credit{color:var(--muted-c);}
+  .inv .design-credit .mark{background:var(--y);color:var(--k);}
+
+  /* Footer rule */
+  .colophon{font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.55;letter-spacing:.04em;color:var(--muted-k);}
+
+  /* Inverted black sections */
+  .inv{background:var(--k);color:var(--bone);}
+  .inv .muted-k{color:var(--muted-c);}
+  .inv .ruled{background:var(--k2);border-color:var(--y);color:var(--bone);}
+  .inv hr{background:var(--y);}
+
+  /* Holes / die-cuts (decorative) */
+  .punch{position:relative;}
+  .punch::before, .punch::after{content:"";position:absolute;top:50%;width:14px;height:14px;border-radius:50%;background:var(--y);border:2px solid var(--k);transform:translateY(-50%);}
+  .punch::before{left:-7px;} .punch::after{right:-7px;}
+
+  /* Dock */
+  .dock{background:var(--y);border-bottom:3px solid var(--k);}
+</style>
+</head>
+<body>
+
+<!-- ============== TOP BAR ============== -->
+<header class="sticky top-0 z-40 dock">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 h-14 md:h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3">
+      <span class="inline-block w-7 h-7 bg-[#1a2920]"></span>
+      <span class="anton text-[26px] leading-none">PROMPTEDIT</span>
+      <span class="mono text-[10.5px] muted-k hidden md:inline">/ PAY-AS-YOU-MAKE CATALOG · PROMPTEDIT</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-6 mono text-[11px] font-semibold uppercase tracking-wider">
+      <a href="#image" class="hover:underline">P. 02 Image</a>
+      <a href="#video" class="hover:underline">P. 04 Video</a>
+      <a href="#audio" class="hover:underline">P. 06 Audio</a>
+      <a href="#order" class="hover:underline">P. 10 Order</a>
+      <a href="#library" class="hover:underline">P. 12 Library</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="#order" class="btn btn-r text-[11px] !py-2 !px-3">Claim $110 →</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============== TICKER STRIP ============== -->
+<section class="inv border-y-[3px] border-[#efe9d9] overflow-hidden py-3">
+  <div class="tick tick-track">
+    <!-- 2 copies for seamless loop -->
+    <span><span class="text-[#efe9d9]">Clone Videos</span></span>
+    <span><span class="text-[#efe9d9]">Visual Effects</span></span>
+    <span><span class="text-[#efe9d9]">Cinematic Films</span></span>
+    <span><span class="text-[#efe9d9]">Video Ads</span></span>
+    <span><span class="text-[#efe9d9]">Reels &amp; Tiktoks</span></span>
+    <span><span class="text-[#efe9d9]">Youtube Video</span></span>
+    <!-- duplicate copy for infinite scroll -->
+    <span><span class="text-[#efe9d9]">Clone Videos</span></span>
+    <span><span class="text-[#efe9d9]">Visual Effects</span></span>
+    <span><span class="text-[#efe9d9]">Cinematic Films</span></span>
+    <span><span class="text-[#efe9d9]">Video Ads</span></span>
+    <span><span class="text-[#efe9d9]">Reels &amp; Tiktoks</span></span>
+    <span><span class="text-[#efe9d9]">Youtube Video</span></span>
+  </div>
+</section>
+
+<!-- ============== HERO / CATALOG COVER ============== -->
+<section id="top" class="relative">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 pt-8 md:pt-14 pb-12 md:pb-16">
+
+    <!-- Cover meta -->
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-8 mono text-[11px] font-semibold uppercase tracking-[.12em]">
+      <div class="flex items-center gap-3 flex-wrap">
+        <span class="sku">DESIGN · OPIA AUSTIN</span>
+        <span>PromptEdit Creative Catalog</span>
+        <span>·</span>
+        <span>Job Submission 2026</span>
+        <span>·</span>
+        <span>For Hiring Review</span>
+      </div>
+      <div class="flex items-center gap-3 flex-wrap">
+        <span>Existing-student offer enclosed</span>
+        <span class="sku-out">— 10% OFF</span>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div class="grid grid-cols-12 gap-6 md:gap-10 mt-10 md:mt-14">
+      <!-- LEFT: massive logotype + headline -->
+      <div class="col-span-12 lg:col-span-8">
+        <div class="mono font-bold mb-3 text-[12px] tracking-[.18em] uppercase">PROMPTEDIT &middot; No. 04</div>
+        <div class="anton t-cover">
+          PROMPT<br/>EDIT
+        </div>
+
+        <div class="mt-8 md:mt-12 anton t-h1 max-w-[16ch]">
+          PAY-AS-YOU-MAKE<br/>
+          AI TOOLS. <span class="mark">ONE BALANCE.</span><br/>
+          ZERO SUBSCRIPTIONS.
+        </div>
+
+        <p class="mt-7 max-w-[58ch] text-[17px] md:text-[18px] leading-[1.5]">
+          A catalog of every major AI tool a maker actually opens — image, video, audio, plugins —
+          billed by the second, not by the month. <strong>17 models. 26 use-cases.</strong>
+          One running total at the bottom of the page, the way every honest bill should work.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a href="#order" class="btn btn-r">Get $110 in credits for $98 →</a>
+          <a href="#image" class="btn btn-blk">Open the catalog</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: table of contents -->
+      <aside class="col-span-12 lg:col-span-4">
+        <div class="ruled p-5">
+          <div class="page-mark mb-3">Table of Contents</div>
+          <div class="anton text-[36px] leading-none mb-4">INSIDE THIS EDITION</div>
+          <div class="index-row"><span class="pn">01</span><span class="nm">What this is</span><span class="pg">p. 01</span></div>
+          <div class="index-row"><span class="pn">02</span><span class="nm">Image · 6 tools</span><span class="pg">p. 02</span></div>
+          <div class="index-row"><span class="pn">03</span><span class="nm">Video · 6 tools</span><span class="pg">p. 04</span></div>
+          <div class="index-row"><span class="pn">04</span><span class="nm">Audio · 5 tools</span><span class="pg">p. 06</span></div>
+          <div class="index-row"><span class="pn">05</span><span class="nm">Editor plug-ins</span><span class="pg">p. 08</span></div>
+          <div class="index-row"><span class="pn">06</span><span class="nm">Order form</span><span class="pg">p. 10</span></div>
+          <div class="index-row"><span class="pn">07</span><span class="nm">Templates library</span><span class="pg">p. 12</span></div>
+          <div class="index-row" style="border-bottom:0"><span class="pn">08</span><span class="nm">FAQ + guarantee</span><span class="pg">p. 14</span></div>
+
+          <div class="mt-5 pt-5 border-t-[3px] border-[#1a2920]">
+            <div class="page-mark mb-2">Cover detail</div>
+            <p class="text-[13.5px] leading-[1.55]">Set in <strong>Anton</strong> (display) &amp; <strong>Inter</strong> on uncoated saffron stock. Printed in a single signature. Edition limited to your inbox.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <hr class="mt-12"/>
+  </div>
+</section>
+
+<!-- ============== HERO VIDEO — THE WALKTHROUGH ============== -->
+<section class="relative">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 pb-16 md:pb-20">
+    <div class="ch-marker">
+      <div class="left">PAGE 01 · VIDEO 01 · THE WALKTHROUGH · 9:53</div>
+      <div class="design-credit"><span class="mark">Design by Opia Austin</span></div>
+      <div class="t-page anton opacity-15 leading-none">01 <span style="font-size:0.45em;vertical-align:baseline">a</span></div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-6 md:gap-8 items-start">
+      <!-- Left: caption + chapters -->
+      <aside class="col-span-12 lg:col-span-3 order-2 lg:order-1">
+        <div class="anton t-h4 max-w-[12ch]">9 MIN.<br/><span class="mark">WALK-THROUGH.</span></div>
+        <p class="text-[14px] leading-[1.55] mt-3">A guided tour of every aisle — image, video, audio, plug-ins. See exactly which models PromptEdit ships and what each costs per render.</p>
+        <div class="mt-5 page-mark">Chapters</div>
+        <ul class="mt-2 mono text-[11.5px] leading-[1.85] tracking-wider uppercase">
+          <li>00:00 — Why pay-as-you-make</li>
+          <li>01:42 — Image aisle</li>
+          <li>03:55 — Video aisle</li>
+          <li>05:30 — Audio aisle</li>
+          <li>07:20 — Templates library</li>
+          <li>09:05 — Claim the offer</li>
+        </ul>
+      </aside>
+
+      <!-- Right: video card -->
+      <div class="col-span-12 lg:col-span-9 order-1 lg:order-2">
+        <div class="ruled relative overflow-hidden" style="aspect-ratio:16/9;border-width:3px;">
+          <div class="absolute inset-0" style="background-image:repeating-linear-gradient(135deg, rgba(26,41,32,0.10) 0 2px, transparent 2px 14px), linear-gradient(180deg, var(--cream) 0%, #d6cdb0 100%);"></div>
+
+          <!-- Watermark behind -->
+          <div class="absolute left-6 top-1/3 anton leading-none pointer-events-none" style="font-size:clamp(28px,5vw,72px);color:var(--k);opacity:0.18;max-width:62%;">
+            THE PROMPTEDIT<br/>WALKTHROUGH.
+          </div>
+
+          <!-- Top corner labels -->
+          <span class="sku absolute top-3 left-3">▶ VIDEO 01</span>
+          <span class="sku-out absolute top-3 right-3">9:53</span>
+
+          <!-- Center play button -->
+          <button class="absolute inset-0 flex items-center justify-center cursor-pointer group" type="button" aria-label="Play walkthrough">
+            <span class="flex items-center justify-center transition-transform group-hover:scale-105"
+                  style="width:120px;height:120px;background:var(--k);color:var(--y);border-radius:50%;font-size:54px;line-height:1;padding-left:10px;font-family:'Anton',sans-serif;">▶</span>
+          </button>
+
+          <!-- Bottom controls bar -->
+          <div class="absolute left-0 right-0 bottom-0 px-4 py-3 flex items-center gap-3" style="background:var(--k);color:var(--y);">
+            <span class="mono text-[11px] font-bold tracking-wider">PLAY 00:00 / 09:53</span>
+            <div class="flex-1 h-1 relative" style="background:rgba(239,233,217,0.25);">
+              <div class="absolute inset-y-0 left-0 w-[3%]" style="background:var(--y);"></div>
+            </div>
+            <span class="mono text-[11px]">CC</span>
+            <span class="mono text-[11px]">HD</span>
+            <span class="mono text-[11px]">⛶</span>
+          </div>
+        </div>
+
+        <!-- Caption row below video -->
+        <div class="mt-3 flex flex-wrap items-center justify-between gap-3">
+          <div class="mono text-[11.5px] tracking-wider uppercase">
+            <span class="font-bold">The PromptEdit walkthrough</span> · narrated · 1080p
+          </div>
+          <a href="#order" class="btn btn-r text-[12px] !py-2 !px-3">Watch &amp; claim offer →</a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="mt-12"/>
+  </div>
+</section>
+
+<!-- ============== WHAT THIS IS (manifesto) ============== -->
+<section class="relative">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <div class="ch-marker">
+      <div class="left">PAGE 01 · WHAT THIS IS</div>
+      <div class="design-credit"><span class="mark">Design by Opia Austin</span></div>
+      <div class="t-page anton opacity-15 leading-none">01</div>
+    </div>
+
+    <div class="grid md:grid-cols-12 gap-6 md:gap-10">
+      <div class="md:col-span-8">
+        <h2 class="anton t-h2 max-w-[20ch]">
+          MOST CREATORS PAY <span class="mark-r">$150+ A MONTH</span><br/>
+          FOR TOOLS THEY OPEN <span class="mark">THREE DAYS A WEEK.</span>
+        </h2>
+        <p class="mt-7 max-w-[60ch] text-[17px] leading-[1.55]">
+          PromptEdit is the workshop you walk into, pay only for what you make, and walk out of.
+          Buy a tank of credits. Use them anywhere on the site — Nano Banana, Veo, Kling, Eleven
+          Labs, Suno, Ideogram. When the tank is empty, refill. No subscription humming in the background.
+        </p>
+      </div>
+      <aside class="md:col-span-4">
+        <div class="ruled-blk p-5 anton text-[36px] leading-[0.95]" style="color:var(--y);">
+          NO LOG-INS<br/>
+          NO TRIALS<br/>
+          NO SURPRISE<br/>
+          RENEWALS<br/>
+          <span class="text-[#c14a2b]">EVER.</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============== COMPARISON TABLE ============== -->
+<section class="inv">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <div class="ch-marker" style="border-color:var(--y);">
+      <div class="left" style="color:var(--y);">SPEC SHEET · MONTHLY MATH</div>
+      <div class="design-credit"><span class="mark">Design by Opia Austin</span></div>
+      <div class="t-page anton opacity-[.18] leading-none" style="color:var(--y);">01b</div>
+    </div>
+
+    <div class="anton t-h2 max-w-[24ch]" style="color:var(--y)">
+      THE SUBSCRIPTION STACK vs.<br/>
+      ONE <span class="mark-r">PROMPTEDIT</span> CART.
+    </div>
+
+    <div class="mt-10 ruled-blk overflow-x-auto">
+      <table class="w-full mono text-[14px]">
+        <thead>
+          <tr style="border-bottom:3px solid var(--y);">
+            <th class="text-left py-3 px-4 uppercase text-[12px] tracking-[.1em]" style="color:var(--y);">Line item</th>
+            <th class="text-right py-3 px-4 uppercase text-[12px] tracking-[.1em]" style="color:var(--y);">Subs. monthly</th>
+            <th class="text-right py-3 px-4 uppercase text-[12px] tracking-[.1em]" style="color:var(--y);">PromptEdit (1 wk)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px dashed var(--muted-c);"><td class="py-2.5 px-4">Midjourney</td><td class="text-right py-2.5 px-4">$30.00</td><td class="text-right py-2.5 px-4" style="color:var(--y);">14 stills → $0.42</td></tr>
+          <tr style="border-bottom:1px dashed var(--muted-c);"><td class="py-2.5 px-4">Runway (annual)</td><td class="text-right py-2.5 px-4">$35.00</td><td class="text-right py-2.5 px-4" style="color:var(--y);">3 clips → $4.20</td></tr>
+          <tr style="border-bottom:1px dashed var(--muted-c);"><td class="py-2.5 px-4">Eleven Labs Creator</td><td class="text-right py-2.5 px-4">$22.00</td><td class="text-right py-2.5 px-4" style="color:var(--y);">90s VO → $0.90</td></tr>
+          <tr style="border-bottom:1px dashed var(--muted-c);"><td class="py-2.5 px-4">HeyGen seat</td><td class="text-right py-2.5 px-4">$48.00</td><td class="text-right py-2.5 px-4" style="color:var(--y);">1 clone clip → $1.40</td></tr>
+          <tr style="border-bottom:1px dashed var(--muted-c);"><td class="py-2.5 px-4">Suno (forgot to cancel)</td><td class="text-right py-2.5 px-4">$10.00</td><td class="text-right py-2.5 px-4" style="color:var(--y);">2 tracks → $0.08</td></tr>
+          <tr style="border-top:3px solid var(--y);">
+            <td class="py-3.5 px-4 anton text-[20px] tracking-tight" style="color:var(--y);">TOTAL</td>
+            <td class="text-right py-3.5 px-4 anton text-[20px] tracking-tight" style="color:var(--y);">$145.00 / mo</td>
+            <td class="text-right py-3.5 px-4 anton text-[20px] tracking-tight" style="color:var(--y);">$7.00 / wk</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="mt-6 mono text-[12px] tracking-wider uppercase opacity-70" style="color:var(--y);">※ Average across PromptEdit users on the existing-student plan. Adjust to your actual usage; do not pay more for tools you do not open.</p>
+  </div>
+</section>
+
+<!-- ============== IMAGE — PAGE 02 ============== -->
+<section id="image" class="relative">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <div class="ch-marker">
+      <div class="left">PAGE 02 · IMAGE · 6 TOOLS</div>
+      <div class="design-credit"><span class="mark">Design by Opia Austin</span></div>
+      <div class="t-page anton opacity-15 leading-none">02</div>
+    </div>
+
+    <div class="grid md:grid-cols-12 gap-6 md:gap-10 mb-10">
+      <h2 class="anton t-h2 md:col-span-7 max-w-[16ch]">
+        SIX TOOLS FOR<br/>
+        <span class="mark">ANY IMAGE</span> YOU'D<br/>
+        EVER RENDER.
+      </h2>
+      <p class="md:col-span-5 text-[16px] leading-[1.55] self-end">
+        AI clones, social posts, full graphic design, surgical edits, YouTube thumbnails,
+        ad creative. Routed to the best engine for each job — Nano Banana Pro, Ideogram,
+        Flux Pro and friends. Billed per render. No model lock-in.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-5">
+      <article class="spec">
+        <div class="top">
+          <span class="sku">SKU · IMG-CLN-01</span>
+          <span class="anton text-[20px]">$0.04</span>
+        </div>
+        <div class="thumb"><span class="anton text-[80px] leading-none">A</span></div>
+        <div>
+          <div class="nm">AI Clones</div>
+          <p class="desc mt-1.5">Train a personal model from 10 photos. Yours, your team's, your dog's. Reusable forever.</p>
+        </div>
+        <div class="stats">
+          <span>Engine</span><span>Flux Custom</span>
+          <span>Train time</span><span>~6 min</span>
+          <span>Output</span><span>PNG · 2048</span>
+          <span>License</span><span>Commercial</span>
+        </div>
+      </article>
+
+      <article class="spec">
+        <div class="top">
+          <span class="sku">SKU · IMG-SOC-02</span>
+          <span class="anton text-[20px]">$0.03</span>
+        </div>
+        <div class="thumb" style="background:#c14a2b;"><span class="anton text-[80px] leading-none" style="color:var(--cream);">S</span></div>
+        <div>
+          <div class="nm">Social Posts</div>
+          <p class="desc mt-1.5">Aspect-aware: 1:1, 4:5, 9:16. Captions follow on demand. Brand voice locked per account.</p>
+        </div>
+        <div class="stats">
+          <span>Engine</span><span>Nano Banana</span>
+          <span>Render</span><span>4 sec</span>
+          <span>Output</span><span>PNG · WEBP</span>
+          <span>License</span><span>Commercial</span>
+        </div>
+      </article>
+
+      <article class="spec">
+        <div class="top">
+          <span class="sku">SKU · IMG-GFX-03</span>
+          <span class="anton text-[20px]">$0.05</span>
+        </div>
+        <div class="thumb" style="background:var(--k);"><span class="anton text-[80px] leading-none" style="color:var(--y);">G</span></div>
+        <div>
+          <div class="nm">Graphic Design</div>
+          <p class="desc mt-1.5">Posters, covers, packaging. Vector output when the prompt makes sense. Tight composition presets.</p>
+        </div>
+        <div class="stats">
+          <span>Engine</span><span>Ideogram</span>
+          <span>Render</span><span>6 sec</span>
+          <span>Output</span><span>SVG · PNG</span>
+          <span>License</span><span>Commercial</span>
+        </div>
+      </article>
+
+      <article class="spec">
+        <div class="top">
+          <span class="sku">SKU · IMG-EDT-04</span>
+          <span class="anton text-[20px]">$0.02</span>
+        </div>
+        <div class="thumb"><span class="anton text-[80px] leading-none">E</span></div>
+        <div>
+          <div class="nm">Image Editing</div>
+          <p class="desc mt-1.5">Inpaint, remove, relight, upscale — surgical prompts with mask layers.</p>
+        </div>
+        <div class="stats">
+          <span>Engine</span><span>Nano Banana</span>
+          <span>Render</span><span>3 sec</span>
+          <span>Output</span><span>PNG · TIFF</span>
+          <span>License</span><span>Commercial</span>
+        </div>
+      </article>
+
+      <article class="spec">
+        <div class="top">
+          <span class="sku">SKU · IMG-YTH-05</span>
+          <span class="anton text-[20px]">$0.04</span>
+        </div>
+        <div class="thumb" style="background:var(--k);"><span class="anton text-[80px] leading-none" style="color:var(--cream);">Y</span></div>
+        <div>
+          <div class="nm">YouTube Thumbnails</div>
+          <p class="desc mt-1.5">CTR-built: subject crisp, text legible at 96px, face-on-thumb ready. A/B variants on tap.</p>
+        </div>
+        <div class="stats">
+          <span>Engine</span><span>Nano Banana</span>
+          <span>Render</span><span>4 sec</span>
+          <span>Output</span><span>1280×720 PNG</span>
+          <span>License</span><span>Commercial</span>
+        </div>
+      </article>
+
+      <article class="spec">
+        <div class="top">
+          <span class="sku">SKU · IMG-ADS-06</span>
+          <span class="anton text-[20px]">$0.04</span>
+        </div>
+        <div class="thumb" style="background:#c14a2b;"><span class="anton text-[80px] leading-none" style="color:var(--k);">O</span></div>
+        <div>
+          <div class="nm">Online Ads</div>
+          <p class="desc mt-1.5">Meta &amp; TikTok-spec creatives in 1:1, 4:5, 9:16. Hooks variant-tested out of the box.</p>
+        </div>
+        <div class="stats">
+          <span>Engine</span><span>Ideogram</span>
+          <span>Render</span><span>5 sec</span>
+          <span>Output</span><span>PNG · WEBP</span>
+          <span>License</span><span>Commercial</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== VIDEO — PAGE 04 — INVERTED ============== -->
+<section id="video" class="inv">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <div class="ch-marker" style="border-color:var(--y);">
+      <div class="left" style="color:var(--y);">PAGE 04 · VIDEO · 6 TOOLS</div>
+      <div class="design-credit"><span class="mark">Design by Opia Austin</span></div>
+      <div class="t-page anton opacity-[.18] leading-none" style="color:var(--y);">04</div>
+    </div>
+
+    <div class="grid md:grid-cols-12 gap-6 md:gap-10 mb-10">
+      <h2 class="anton t-h2 md:col-span-7 max-w-[16ch]" style="color:var(--y);">
+        FROM A 5-SECOND CLIP<br/>
+        TO A <span class="mark-c">FULL SHORT</span>.
+      </h2>
+      <p class="md:col-span-5 text-[16px] leading-[1.55] self-end" style="color:var(--muted-c);">
+        Six video engines under one prompt bar. Veo for cinematic, Kling for motion,
+        HeyGen for the face that can't make the shoot. You choose; we route through
+        whichever provider has the cheapest API price this hour.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-5">
+      <article class="spec" style="background:var(--k2);border-color:var(--y);color:var(--bone);">
+        <div class="top"><span class="sku" style="background:var(--y);color:var(--k);">SKU · VID-CLN-01</span><span class="anton text-[20px]" style="color:var(--y);">$0.28<span class="text-[14px]">/5s</span></span></div>
+        <div class="thumb" style="background:var(--y);border-color:var(--y);"><span class="anton text-[80px] leading-none" style="color:var(--k);">C</span></div>
+        <div>
+          <div class="nm" style="color:var(--bone);">Clone Videos</div>
+          <p class="desc mt-1.5" style="color:var(--muted-c);">Talking-head from a script &amp; one reference take. HeyGen-grade.</p>
+        </div>
+        <div class="stats" style="border-color:var(--y);">
+          <span style="color:var(--muted-c);">Engine</span><span style="color:var(--y);">HeyGen</span>
+          <span style="color:var(--muted-c);">Length</span><span style="color:var(--y);">≤ 60s</span>
+          <span style="color:var(--muted-c);">Output</span><span style="color:var(--y);">1080p MP4</span>
+          <span style="color:var(--muted-c);">License</span><span style="color:var(--y);">Commercial</span>
+        </div>
+      </article>
+      <article class="spec" style="background:var(--k2);border-color:var(--y);color:var(--bone);">
+        <div class="top"><span class="sku" style="background:var(--y);color:var(--k);">SKU · VID-VFX-02</span><span class="anton text-[20px]" style="color:var(--y);">$0.18<span class="text-[14px]">/5s</span></span></div>
+        <div class="thumb" style="background:var(--r);border-color:var(--y);"><span class="anton text-[80px] leading-none" style="color:var(--k);">V</span></div>
+        <div>
+          <div class="nm" style="color:var(--bone);">Visual Effects</div>
+          <p class="desc mt-1.5" style="color:var(--muted-c);">Drop a clip, get a styled motion-tracked version. Reference-mode.</p>
+        </div>
+        <div class="stats" style="border-color:var(--y);">
+          <span style="color:var(--muted-c);">Engine</span><span style="color:var(--y);">Kling 2.0</span>
+          <span style="color:var(--muted-c);">Length</span><span style="color:var(--y);">≤ 10s</span>
+          <span style="color:var(--muted-c);">Output</span><span style="color:var(--y);">1080p MP4</span>
+          <span style="color:var(--muted-c);">License</span><span style="color:var(--y);">Commercial</span>
+        </div>
+      </article>
+      <article class="spec" style="background:var(--k2);border-color:var(--y);color:var(--bone);">
+        <div class="top"><span class="sku" style="background:var(--y);color:var(--k);">SKU · VID-CIN-03</span><span class="anton text-[20px]" style="color:var(--y);">$0.42<span class="text-[14px]">/5s</span></span></div>
+        <div class="thumb" style="background:var(--y);border-color:var(--y);"><span class="anton text-[80px] leading-none" style="color:var(--r);">F</span></div>
+        <div>
+          <div class="nm" style="color:var(--bone);">Cinematic Films</div>
+          <p class="desc mt-1.5" style="color:var(--muted-c);">Veo 3. Audio-synced, 1080p, 24fps. The expensive look, by the second.</p>
+        </div>
+        <div class="stats" style="border-color:var(--y);">
+          <span style="color:var(--muted-c);">Engine</span><span style="color:var(--y);">Veo 3</span>
+          <span style="color:var(--muted-c);">Length</span><span style="color:var(--y);">≤ 12s</span>
+          <span style="color:var(--muted-c);">Output</span><span style="color:var(--y);">1080p MP4</span>
+          <span style="color:var(--muted-c);">License</span><span style="color:var(--y);">Commercial</span>
+        </div>
+      </article>
+      <article class="spec" style="background:var(--k2);border-color:var(--y);color:var(--bone);">
+        <div class="top"><span class="sku" style="background:var(--y);color:var(--k);">SKU · VID-ADS-04</span><span class="anton text-[20px]" style="color:var(--y);">$0.26<span class="text-[14px]">/5s</span></span></div>
+        <div class="thumb" style="background:var(--y);border-color:var(--y);"><span class="anton text-[80px] leading-none" style="color:var(--k);">$</span></div>
+        <div>
+          <div class="nm" style="color:var(--bone);">Video Ads</div>
+          <p class="desc mt-1.5" style="color:var(--muted-c);">Pre-rolled for Meta &amp; TikTok. Hooks baked into the first frame.</p>
+        </div>
+        <div class="stats" style="border-color:var(--y);">
+          <span style="color:var(--muted-c);">Engine</span><span style="color:var(--y);">Seedance</span>
+          <span style="color:var(--muted-c);">Length</span><span style="color:var(--y);">5–15s</span>
+          <span style="color:var(--muted-c);">Output</span><span style="color:var(--y);">1080p MP4</span>
+          <span style="color:var(--muted-c);">License</span><span style="color:var(--y);">Commercial</span>
+        </div>
+      </article>
+      <article class="spec" style="background:var(--k2);border-color:var(--y);color:var(--bone);">
+        <div class="top"><span class="sku" style="background:var(--y);color:var(--k);">SKU · VID-REL-05</span><span class="anton text-[20px]" style="color:var(--y);">$0.22<span class="text-[14px]">/5s</span></span></div>
+        <div class="thumb" style="background:var(--r);border-color:var(--y);"><span class="anton text-[80px] leading-none" style="color:var(--y);">R</span></div>
+        <div>
+          <div class="nm" style="color:var(--bone);">Reels &amp; TikToks</div>
+          <p class="desc mt-1.5" style="color:var(--muted-c);">9:16, captions on, subject pinned. Beat-cut on demand.</p>
+        </div>
+        <div class="stats" style="border-color:var(--y);">
+          <span style="color:var(--muted-c);">Engine</span><span style="color:var(--y);">Kling 2.0</span>
+          <span style="color:var(--muted-c);">Length</span><span style="color:var(--y);">≤ 30s</span>
+          <span style="color:var(--muted-c);">Output</span><span style="color:var(--y);">1080×1920</span>
+          <span style="color:var(--muted-c);">License</span><span style="color:var(--y);">Commercial</span>
+        </div>
+      </article>
+      <article class="spec" style="background:var(--k2);border-color:var(--y);color:var(--bone);">
+        <div class="top"><span class="sku" style="background:var(--y);color:var(--k);">SKU · VID-YTL-06</span><span class="anton text-[20px]" style="color:var(--y);">$0.28<span class="text-[14px]">/5s</span></span></div>
+        <div class="thumb" style="background:var(--y);border-color:var(--y);"><span class="anton text-[80px] leading-none" style="color:var(--k);">Y</span></div>
+        <div>
+          <div class="nm" style="color:var(--bone);">YouTube Videos</div>
+          <p class="desc mt-1.5" style="color:var(--muted-c);">16:9 mid-tempo B-roll the long-form host always needs.</p>
+        </div>
+        <div class="stats" style="border-color:var(--y);">
+          <span style="color:var(--muted-c);">Engine</span><span style="color:var(--y);">Seedance</span>
+          <span style="color:var(--muted-c);">Length</span><span style="color:var(--y);">≤ 30s</span>
+          <span style="color:var(--muted-c);">Output</span><span style="color:var(--y);">1920×1080</span>
+          <span style="color:var(--muted-c);">License</span><span style="color:var(--y);">Commercial</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== AUDIO — PAGE 06 ============== -->
+<section id="audio" class="relative">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <div class="ch-marker">
+      <div class="left">PAGE 06 · AUDIO · 5 TOOLS</div>
+      <div class="design-credit"><span class="mark">Design by Opia Austin</span></div>
+      <div class="t-page anton opacity-15 leading-none">06</div>
+    </div>
+
+    <div class="grid md:grid-cols-12 gap-6 md:gap-10 mb-10">
+      <h2 class="anton t-h2 md:col-span-7 max-w-[16ch]">
+        A VOICE THAT <span class="mark">SOUNDS LIKE YOU</span><br/>
+        EVEN WHEN YOU CAN'T SPEAK.
+      </h2>
+      <p class="md:col-span-5 text-[16px] leading-[1.55] self-end">
+        Five audio engines tuned for voiceover, clones, swaps, SFX, and music generation.
+        Eleven Labs &amp; Suno-powered. Loudness-mastered at −14 LUFS, broadcast-clean.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5">
+      <article class="spec"><div class="top"><span class="sku">AUD-VO-01</span><span class="anton text-[18px]">$0.01<span class="text-[12px]">/s</span></span></div>
+        <div class="thumb"><span class="anton text-[64px]">►</span></div>
+        <div><div class="nm">Voiceovers</div><p class="desc mt-1">32 named voices. Docs, explainers, audiobooks.</p></div>
+      </article>
+      <article class="spec"><div class="top"><span class="sku">AUD-CL-02</span><span class="anton text-[18px]">$0.02<span class="text-[12px]">/s</span></span></div>
+        <div class="thumb" style="background:var(--k)"><span class="anton text-[64px]" style="color:var(--y);">CL</span></div>
+        <div><div class="nm">Voice Clones</div><p class="desc mt-1">3-min sample → your voice, locked to your account.</p></div>
+      </article>
+      <article class="spec"><div class="top"><span class="sku">AUD-SW-03</span><span class="anton text-[18px]">$0.01<span class="text-[12px]">/s</span></span></div>
+        <div class="thumb"><span class="anton text-[64px]">↔</span></div>
+        <div><div class="nm">Voice Swaps</div><p class="desc mt-1">Keep the take, change the voice. Lip-sync preserved.</p></div>
+      </article>
+      <article class="spec"><div class="top"><span class="sku">AUD-SFX-04</span><span class="anton text-[18px]">$0.005<span class="text-[12px]">/s</span></span></div>
+        <div class="thumb" style="background:var(--r)"><span class="anton text-[64px]" style="color:var(--k);">!</span></div>
+        <div><div class="nm">Sound Effects</div><p class="desc mt-1">Whoosh, impact, room tone — described, rendered.</p></div>
+      </article>
+      <article class="spec"><div class="top"><span class="sku">AUD-MUS-05</span><span class="anton text-[18px]">$0.04<span class="text-[12px]">/30s</span></span></div>
+        <div class="thumb"><span class="anton text-[64px]">♪</span></div>
+        <div><div class="nm">Music Gen.</div><p class="desc mt-1">Suno-powered. Genre, tempo, lyric, stems-out.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== EDITOR PLUGINS — PAGE 08 ============== -->
+<section id="plugins" class="inv">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <div class="ch-marker" style="border-color:var(--y);">
+      <div class="left" style="color:var(--y);">PAGE 08 · EDITOR PLUG-INS</div>
+      <div class="design-credit"><span class="mark">Design by Opia Austin</span></div>
+      <div class="t-page anton opacity-[.18] leading-none" style="color:var(--y);">08</div>
+    </div>
+
+    <h2 class="anton t-h2 max-w-[20ch]" style="color:var(--y);">
+      LIVES <span class="mark-c">INSIDE</span><br/>
+      THE EDITOR YOU<br/>
+      ALREADY USE.
+    </h2>
+    <p class="mt-6 max-w-[60ch] text-[16px] leading-[1.55]" style="color:var(--muted-c);">
+      No browser tab. The PromptEdit panel opens inside Premiere, Resolve, and Final Cut.
+      Generate, drag, drop on the timeline. Keep cutting.
+    </p>
+
+    <div class="grid lg:grid-cols-3 gap-4 md:gap-5 mt-10">
+      <div class="ruled-blk p-5 border-[3px]" style="border-color:var(--y);">
+        <div class="page-mark" style="color:var(--y);">PREMIERE PRO</div>
+        <div class="anton t-h4 mt-3" style="color:var(--y);">DRAG · DROP · CUT.</div>
+        <p class="mt-2 text-[13.5px] leading-[1.55]" style="color:var(--muted-c);">Docked panel in Window › Extensions. Essential graphics roll in editable, clip handles intact.</p>
+        <span class="sku mt-4 inline-flex" style="background:var(--y);color:var(--k);">v 4.2.1</span>
+      </div>
+      <div class="ruled-blk p-5 border-[3px]" style="border-color:var(--y);">
+        <div class="page-mark" style="color:var(--y);">DAVINCI RESOLVE</div>
+        <div class="anton t-h4 mt-3" style="color:var(--y);">FUSION-NATIVE.</div>
+        <p class="mt-2 text-[13.5px] leading-[1.55]" style="color:var(--muted-c);">Generations land as native Fusion comps. LUTs install into the right bin. DCTL-aware.</p>
+        <span class="sku mt-4 inline-flex" style="background:var(--y);color:var(--k);">v 2.0</span>
+      </div>
+      <div class="ruled-blk p-5 border-[3px]" style="border-color:var(--y);">
+        <div class="page-mark" style="color:var(--y);">FINAL CUT PRO</div>
+        <div class="anton t-h4 mt-3" style="color:var(--y);">PROJECT-SAFE.</div>
+        <p class="mt-2 text-[13.5px] leading-[1.55]" style="color:var(--muted-c);">Workspace plug-in. Cache-aware. Output renders to your event library, color-safe.</p>
+        <span class="sku mt-4 inline-flex" style="background:var(--y);color:var(--k);">v 1.4</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ORDER FORM — PAGE 10 ============== -->
+<section id="order" class="relative">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <div class="ch-marker">
+      <div class="left">PAGE 10 · ORDER FORM</div>
+      <div class="design-credit"><span class="mark">Design by Opia Austin</span></div>
+      <div class="t-page anton opacity-15 leading-none">10</div>
+    </div>
+
+    <div class="grid md:grid-cols-12 gap-6 md:gap-10 items-start">
+      <div class="md:col-span-5">
+        <h2 class="anton t-h2 max-w-[18ch]">
+          PICK A LINE.<br/>
+          <span class="mark-r">CIRCLE A NUMBER.</span><br/>
+          SHIP IT.
+        </h2>
+        <p class="mt-6 text-[16px] leading-[1.55] max-w-[44ch]">
+          Two ways in: a one-time credit top-up at the existing-student rate, or the
+          monthly plan that unlocks the entire <strong>Content Creator Templates Library</strong> (100,000+ assets).
+          Pick the one that matches how you work — both are fully refundable on unused
+          credits within 30&nbsp;days.
+        </p>
+        <div class="mt-7 flex items-center gap-4">
+          <div class="stamp"><span class="big">10%</span><span class="small">student off</span></div>
+          <div class="text-[13.5px] leading-[1.4]">
+            <strong>Existing-student offer</strong><br/>
+            <span class="muted-k">Applied automatically at checkout if you've enrolled in the AI Creator Course.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-7 grid gap-4">
+        <!-- ORDER A: one-time -->
+        <article class="coupon">
+          <div class="flex items-start justify-between flex-wrap gap-3">
+            <div>
+              <div class="page-mark">Order A · One-time</div>
+              <div class="anton t-h3 mt-2">SAVE ON CREDITS</div>
+            </div>
+            <span class="sku-out">SKU · ORD-A · $98</span>
+          </div>
+
+          <div class="order-line"><span class="qty">1</span><span>AI Credits unlocked at sign-up</span><span class="font-bold">$110.00 value</span></div>
+          <div class="order-line"><span class="qty">✓</span><span>Use on every tool: Nano Banana, Veo, Kling, Eleven, Suno, Ideogram</span><span>included</span></div>
+          <div class="order-line"><span class="qty">✓</span><span>Credits never expire — they roll until spent</span><span>included</span></div>
+          <div class="order-line"><span class="qty">✓</span><span>Commercial license on every generation</span><span>included</span></div>
+          <div class="order-line"><span class="qty">✗</span><span>Templates library access</span><span class="muted-k">not included</span></div>
+          <div class="order-line" style="border:0;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:22px;letter-spacing:0.005em;">
+            <span class="qty" style="background:var(--k);color:var(--y);border-color:var(--k);">$</span>
+            <span>One payment, no subscription</span>
+            <span>$98.00</span>
+          </div>
+
+          <a href="#" class="btn btn-blk mt-5">Claim $110 in credits →</a>
+        </article>
+
+        <!-- ORDER B: monthly -->
+        <article class="ruled-blk p-6 md:p-7 relative" style="background:var(--k);color:var(--bone);">
+          <span class="absolute -top-3 left-5 mono text-[11px] font-bold uppercase tracking-[.1em] px-2 py-0.5" style="background:var(--r);color:#fff;">Best value · student bonus</span>
+          <div class="flex items-start justify-between flex-wrap gap-3">
+            <div>
+              <div class="page-mark" style="color:var(--y);">Order B · Monthly</div>
+              <div class="anton t-h3 mt-2" style="color:var(--y);">EVERYTHING ON</div>
+            </div>
+            <span class="sku" style="background:var(--y);color:var(--k);">SKU · ORD-B · $39/MO</span>
+          </div>
+
+          <div class="order-line" style="border-color:var(--muted-c);"><span class="qty" style="background:var(--y);color:var(--k);border-color:var(--y);">1</span><span style="color:var(--bone);">AI credits per month</span><span style="color:var(--y);">$49.00 value</span></div>
+          <div class="order-line" style="border-color:var(--muted-c);"><span class="qty" style="background:var(--y);color:var(--k);border-color:var(--y);">✓</span><span style="color:var(--bone);">Lifetime 20% boost on monthly credits + 10% off any top-up</span><span style="color:var(--y);">included</span></div>
+          <div class="order-line" style="border-color:var(--muted-c);"><span class="qty" style="background:var(--y);color:var(--k);border-color:var(--y);">✓</span><span style="color:var(--bone);">Templates Library — 100,000+ LUTs, SFX, text, overlays, BGs</span><span style="color:var(--y);">included</span></div>
+          <div class="order-line" style="border-color:var(--muted-c);"><span class="qty" style="background:var(--y);color:var(--k);border-color:var(--y);">✓</span><span style="color:var(--bone);">Priority queue · run multiple generations at once</span><span style="color:var(--y);">included</span></div>
+          <div class="order-line" style="border-color:var(--muted-c);"><span class="qty" style="background:var(--y);color:var(--k);border-color:var(--y);">✓</span><span style="color:var(--bone);">Cancel any time · 30-day refund on unused credits</span><span style="color:var(--y);">included</span></div>
+          <div class="order-line" style="border:0;font-family:'Anton',sans-serif;text-transform:uppercase;font-size:22px;letter-spacing:0.005em;">
+            <span class="qty" style="background:var(--y);color:var(--k);border-color:var(--y);">$</span>
+            <span style="color:var(--bone);">Per month · cancel any time</span>
+            <span style="color:var(--y);">$39.00</span>
+          </div>
+
+          <a href="#" class="btn btn-r mt-5">Start the monthly plan →</a>
+        </article>
+
+        <p class="mono text-[12px] muted-k leading-[1.6]">
+          ※ Spent credits are non-refundable — think of them like gas. Once you've driven, you can't unfuel the car. Unused credits refundable in full within 30 days.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TEMPLATES LIBRARY — PAGE 12 ============== -->
+<section id="library" class="inv">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <div class="ch-marker" style="border-color:var(--y);">
+      <div class="left" style="color:var(--y);">PAGE 12 · TEMPLATES LIBRARY · INCLUDED W/ ORDER B</div>
+      <div class="design-credit"><span class="mark">Design by Opia Austin</span></div>
+      <div class="t-page anton opacity-[.18] leading-none" style="color:var(--y);">12</div>
+    </div>
+
+    <h2 class="anton t-h2 max-w-[22ch]" style="color:var(--y);">
+      100,000+ DRAG-AND-DROP<br/>
+      ASSETS. THE <span class="mark-c">MONTHLY PLAN</span><br/>
+      UNLOCKS THE WHOLE SHELF.
+    </h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4 mt-10">
+      <div class="ruled-blk p-4" style="background:var(--y);color:var(--k);border-color:var(--k);">
+        <div class="anton text-[56px] leading-none">4,000+</div>
+        <div class="mono text-[11px] mt-2 tracking-[.1em] uppercase font-bold">LUTs</div>
+        <p class="text-[12px] mt-2 leading-[1.5]">Drag-and-drop cinematic color, any editing app.</p>
+      </div>
+      <div class="ruled-blk p-4" style="background:var(--y);color:var(--k);border-color:var(--k);">
+        <div class="anton text-[56px] leading-none">60,000+</div>
+        <div class="mono text-[11px] mt-2 tracking-[.1em] uppercase font-bold">SFX</div>
+        <p class="text-[12px] mt-2 leading-[1.5]">Whoosh, impact, room tone — professionally recorded.</p>
+      </div>
+      <div class="ruled-blk p-4" style="background:var(--y);color:var(--k);border-color:var(--k);">
+        <div class="anton text-[56px] leading-none">3,000+</div>
+        <div class="mono text-[11px] mt-2 tracking-[.1em] uppercase font-bold">Text Anims</div>
+        <p class="text-[12px] mt-2 leading-[1.5]">Pick a layout, type your message, animate.</p>
+      </div>
+      <div class="ruled-blk p-4" style="background:var(--y);color:var(--k);border-color:var(--k);">
+        <div class="anton text-[56px] leading-none">2,000+</div>
+        <div class="mono text-[11px] mt-2 tracking-[.1em] uppercase font-bold">Overlays</div>
+        <p class="text-[12px] mt-2 leading-[1.5]">Trendy textures or retro vibe — blend-mode and done.</p>
+      </div>
+      <div class="ruled-blk p-4" style="background:var(--y);color:var(--k);border-color:var(--k);">
+        <div class="anton text-[56px] leading-none">5,000+</div>
+        <div class="mono text-[11px] mt-2 tracking-[.1em] uppercase font-bold">Backgrounds</div>
+        <p class="text-[12px] mt-2 leading-[1.5]">Animated bases for any video or social slot.</p>
+      </div>
+    </div>
+
+    <!-- LUT PACKS SUB-SECTION -->
+    <div class="mt-16 pt-12 border-t-[3px]" style="border-color:var(--y);">
+      <div class="grid md:grid-cols-12 gap-6 mb-8 items-end">
+        <div class="md:col-span-7">
+          <div class="page-mark" style="color:var(--y);">A few favorites · LUT packs</div>
+          <h3 class="anton t-h3 mt-2 max-w-[22ch]" style="color:var(--y);">
+            12 LOOKS THAT TURN <span class="mark-c">PHONE FOOTAGE</span> INTO&nbsp;CINEMA.
+          </h3>
+        </div>
+        <p class="md:col-span-5 text-[14px] leading-[1.55]" style="color:var(--muted-c);">
+          Drag-and-drop color presets. Each pack is professionally graded — every major editor, every camera. Drop, drag, done.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+        <!-- 01 -->
+        <article class="ruled overflow-hidden" style="background:var(--cream);border-color:var(--y);">
+          <div class="relative" style="aspect-ratio:5/3;">
+            <div class="absolute inset-0 grid grid-cols-2">
+              <div class="relative" style="background:linear-gradient(180deg,#a4adb0,#6e7878);"><span class="absolute bottom-2 left-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">BEFORE</span></div>
+              <div class="relative" style="background:linear-gradient(180deg,#3a6470,#1f3a44);"><span class="absolute bottom-2 right-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">AFTER</span></div>
+            </div>
+            <div class="absolute left-1/2 top-0 bottom-0 w-px" style="background:rgba(0,0,0,0.45);"></div>
+          </div>
+          <div class="px-3 py-2.5 anton text-[15px] leading-none flex items-center justify-between gap-2" style="color:var(--k);"><span>ACTION SPORTS</span><span class="mono text-[10px] font-bold opacity-50">LUT-01</span></div>
+        </article>
+        <!-- 02 -->
+        <article class="ruled overflow-hidden" style="background:var(--cream);border-color:var(--y);">
+          <div class="relative" style="aspect-ratio:5/3;">
+            <div class="absolute inset-0 grid grid-cols-2">
+              <div class="relative" style="background:linear-gradient(180deg,#b3a89a,#857d70);"><span class="absolute bottom-2 left-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">BEFORE</span></div>
+              <div class="relative" style="background:linear-gradient(180deg,#ecd0a8,#c8a06c);"><span class="absolute bottom-2 right-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(26,41,32,0.85);">AFTER</span></div>
+            </div>
+            <div class="absolute left-1/2 top-0 bottom-0 w-px" style="background:rgba(0,0,0,0.45);"></div>
+          </div>
+          <div class="px-3 py-2.5 anton text-[15px] leading-none flex items-center justify-between gap-2" style="color:var(--k);"><span>WEDDING</span><span class="mono text-[10px] font-bold opacity-50">LUT-02</span></div>
+        </article>
+        <!-- 03 -->
+        <article class="ruled overflow-hidden" style="background:var(--cream);border-color:var(--y);">
+          <div class="relative" style="aspect-ratio:5/3;">
+            <div class="absolute inset-0 grid grid-cols-2">
+              <div class="relative" style="background:linear-gradient(180deg,#a5a89a,#787c6c);"><span class="absolute bottom-2 left-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">BEFORE</span></div>
+              <div class="relative" style="background:linear-gradient(180deg,#c8a878,#7c6038);"><span class="absolute bottom-2 right-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">AFTER</span></div>
+            </div>
+            <div class="absolute left-1/2 top-0 bottom-0 w-px" style="background:rgba(0,0,0,0.45);"></div>
+          </div>
+          <div class="px-3 py-2.5 anton text-[15px] leading-none flex items-center justify-between gap-2" style="color:var(--k);"><span>VINTAGE VIBE</span><span class="mono text-[10px] font-bold opacity-50">LUT-03</span></div>
+        </article>
+        <!-- 04 -->
+        <article class="ruled overflow-hidden" style="background:var(--cream);border-color:var(--y);">
+          <div class="relative" style="aspect-ratio:5/3;">
+            <div class="absolute inset-0 grid grid-cols-2">
+              <div class="relative" style="background:linear-gradient(180deg,#bdb495,#86806a);"><span class="absolute bottom-2 left-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">BEFORE</span></div>
+              <div class="relative" style="background:linear-gradient(180deg,#f0a878,#c87038);"><span class="absolute bottom-2 right-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">AFTER</span></div>
+            </div>
+            <div class="absolute left-1/2 top-0 bottom-0 w-px" style="background:rgba(0,0,0,0.45);"></div>
+          </div>
+          <div class="px-3 py-2.5 anton text-[15px] leading-none flex items-center justify-between gap-2" style="color:var(--k);"><span>TROPICAL WARMTH</span><span class="mono text-[10px] font-bold opacity-50">LUT-04</span></div>
+        </article>
+        <!-- 05 -->
+        <article class="ruled overflow-hidden" style="background:var(--cream);border-color:var(--y);">
+          <div class="relative" style="aspect-ratio:5/3;">
+            <div class="absolute inset-0 grid grid-cols-2">
+              <div class="relative" style="background:linear-gradient(180deg,#b8a8a8,#807474);"><span class="absolute bottom-2 left-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">BEFORE</span></div>
+              <div class="relative" style="background:linear-gradient(180deg,#f0c4bc,#c08074);"><span class="absolute bottom-2 right-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(26,41,32,0.85);">AFTER</span></div>
+            </div>
+            <div class="absolute left-1/2 top-0 bottom-0 w-px" style="background:rgba(0,0,0,0.45);"></div>
+          </div>
+          <div class="px-3 py-2.5 anton text-[15px] leading-none flex items-center justify-between gap-2" style="color:var(--k);"><span>SOFT GLOW</span><span class="mono text-[10px] font-bold opacity-50">LUT-05</span></div>
+        </article>
+        <!-- 06 -->
+        <article class="ruled overflow-hidden" style="background:var(--cream);border-color:var(--y);">
+          <div class="relative" style="aspect-ratio:5/3;">
+            <div class="absolute inset-0 grid grid-cols-2">
+              <div class="relative" style="background:linear-gradient(180deg,#9aa3a8,#62686c);"><span class="absolute bottom-2 left-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">BEFORE</span></div>
+              <div class="relative" style="background:linear-gradient(180deg,#1c3a4a 0%,#1c3a4a 50%,#d88848 50%,#d88848 100%);"><span class="absolute bottom-2 right-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">AFTER</span></div>
+            </div>
+            <div class="absolute left-1/2 top-0 bottom-0 w-px" style="background:rgba(0,0,0,0.45);"></div>
+          </div>
+          <div class="px-3 py-2.5 anton text-[15px] leading-none flex items-center justify-between gap-2" style="color:var(--k);"><span>HOLLYWOOD MOVIES</span><span class="mono text-[10px] font-bold opacity-50">LUT-06</span></div>
+        </article>
+        <!-- 07 -->
+        <article class="ruled overflow-hidden" style="background:var(--cream);border-color:var(--y);">
+          <div class="relative" style="aspect-ratio:5/3;">
+            <div class="absolute inset-0 grid grid-cols-2">
+              <div class="relative" style="background:linear-gradient(180deg,#bdb09c,#85786a);"><span class="absolute bottom-2 left-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">BEFORE</span></div>
+              <div class="relative" style="background:linear-gradient(180deg,#d8a070,#984c30);"><span class="absolute bottom-2 right-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">AFTER</span></div>
+            </div>
+            <div class="absolute left-1/2 top-0 bottom-0 w-px" style="background:rgba(0,0,0,0.45);"></div>
+          </div>
+          <div class="px-3 py-2.5 anton text-[15px] leading-none flex items-center justify-between gap-2" style="color:var(--k);"><span>HOLLYWOOD KODAK</span><span class="mono text-[10px] font-bold opacity-50">LUT-07</span></div>
+        </article>
+        <!-- 08 -->
+        <article class="ruled overflow-hidden" style="background:var(--cream);border-color:var(--y);">
+          <div class="relative" style="aspect-ratio:5/3;">
+            <div class="absolute inset-0 grid grid-cols-2">
+              <div class="relative" style="background:linear-gradient(180deg,#b5c0c8,#7c8590);"><span class="absolute bottom-2 left-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">BEFORE</span></div>
+              <div class="relative" style="background:linear-gradient(180deg,#a8d4e8,#4a8cc0);"><span class="absolute bottom-2 right-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(26,41,32,0.85);">AFTER</span></div>
+            </div>
+            <div class="absolute left-1/2 top-0 bottom-0 w-px" style="background:rgba(0,0,0,0.45);"></div>
+          </div>
+          <div class="px-3 py-2.5 anton text-[15px] leading-none flex items-center justify-between gap-2" style="color:var(--k);"><span>DRONE PACK</span><span class="mono text-[10px] font-bold opacity-50">LUT-08</span></div>
+        </article>
+        <!-- 09 -->
+        <article class="ruled overflow-hidden" style="background:var(--cream);border-color:var(--y);">
+          <div class="relative" style="aspect-ratio:5/3;">
+            <div class="absolute inset-0 grid grid-cols-2">
+              <div class="relative" style="background:linear-gradient(180deg,#a8a8a4,#787876);"><span class="absolute bottom-2 left-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">BEFORE</span></div>
+              <div class="relative" style="background:linear-gradient(180deg,#dcc998,#9a7c4c);"><span class="absolute bottom-2 right-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(26,41,32,0.85);">AFTER</span></div>
+            </div>
+            <div class="absolute left-1/2 top-0 bottom-0 w-px" style="background:rgba(0,0,0,0.45);"></div>
+          </div>
+          <div class="px-3 py-2.5 anton text-[15px] leading-none flex items-center justify-between gap-2" style="color:var(--k);"><span>SMARTPHONE LUTS</span><span class="mono text-[10px] font-bold opacity-50">LUT-09</span></div>
+        </article>
+        <!-- 10 -->
+        <article class="ruled overflow-hidden" style="background:var(--cream);border-color:var(--y);">
+          <div class="relative" style="aspect-ratio:5/3;">
+            <div class="absolute inset-0 grid grid-cols-2">
+              <div class="relative" style="background:linear-gradient(180deg,#b0bcc4,#788088);"><span class="absolute bottom-2 left-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">BEFORE</span></div>
+              <div class="relative" style="background:linear-gradient(180deg,#c0d4dc,#5080a0);"><span class="absolute bottom-2 right-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(26,41,32,0.85);">AFTER</span></div>
+            </div>
+            <div class="absolute left-1/2 top-0 bottom-0 w-px" style="background:rgba(0,0,0,0.45);"></div>
+          </div>
+          <div class="px-3 py-2.5 anton text-[15px] leading-none flex items-center justify-between gap-2" style="color:var(--k);"><span>COLD WINTER</span><span class="mono text-[10px] font-bold opacity-50">LUT-10</span></div>
+        </article>
+        <!-- 11 -->
+        <article class="ruled overflow-hidden" style="background:var(--cream);border-color:var(--y);">
+          <div class="relative" style="aspect-ratio:5/3;">
+            <div class="absolute inset-0 grid grid-cols-2">
+              <div class="relative" style="background:linear-gradient(180deg,#b8a88c,#857764);"><span class="absolute bottom-2 left-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">BEFORE</span></div>
+              <div class="relative" style="background:linear-gradient(180deg,#f0c878,#a87830);"><span class="absolute bottom-2 right-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(26,41,32,0.85);">AFTER</span></div>
+            </div>
+            <div class="absolute left-1/2 top-0 bottom-0 w-px" style="background:rgba(0,0,0,0.45);"></div>
+          </div>
+          <div class="px-3 py-2.5 anton text-[15px] leading-none flex items-center justify-between gap-2" style="color:var(--k);"><span>CINEMATIC GOLDEN</span><span class="mono text-[10px] font-bold opacity-50">LUT-11</span></div>
+        </article>
+        <!-- 12 -->
+        <article class="ruled overflow-hidden" style="background:var(--cream);border-color:var(--y);">
+          <div class="relative" style="aspect-ratio:5/3;">
+            <div class="absolute inset-0 grid grid-cols-2">
+              <div class="relative" style="background:linear-gradient(180deg,#a4a3a0,#74726f);"><span class="absolute bottom-2 left-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(255,255,255,0.95);">BEFORE</span></div>
+              <div class="relative" style="background:linear-gradient(180deg,#dcd4c4,#404038);"><span class="absolute bottom-2 right-2 mono text-[9.5px] font-bold tracking-[.12em]" style="color:rgba(26,41,32,0.85);">AFTER</span></div>
+            </div>
+            <div class="absolute left-1/2 top-0 bottom-0 w-px" style="background:rgba(0,0,0,0.45);"></div>
+          </div>
+          <div class="px-3 py-2.5 anton text-[15px] leading-none flex items-center justify-between gap-2" style="color:var(--k);"><span>BLEACH BYPASS</span><span class="mono text-[10px] font-bold opacity-50">LUT-12</span></div>
+        </article>
+      </div>
+
+      <p class="mt-5 mono text-[11px] tracking-[.12em] uppercase" style="color:var(--muted-c);">※ 4,000+ more LUTs inside the library. These are 12 favorites the team reaches for weekly.</p>
+    </div>
+
+    <div class="mt-10 ruled p-6" style="background:var(--y);color:var(--k);border-color:var(--y);">
+      <div class="mono text-[11px] uppercase tracking-[.12em] font-bold">UNLIMITED · DRAG-AND-DROP · EVERY MAJOR EDITOR</div>
+      <div class="anton t-h3 mt-2">UNLIMITED DOWNLOADS. UNLIMITED USAGE. FOREVER.</div>
+      <a href="#order" class="btn btn-blk mt-5">Unlock the library →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LETTERS — PAGE 13 ============== -->
+<section class="relative">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <div class="ch-marker">
+      <div class="left">PAGE 13 · LETTERS TO THE EDITOR</div>
+      <div class="design-credit"><span class="mark">Design by Opia Austin</span></div>
+      <div class="t-page anton opacity-15 leading-none">13</div>
+    </div>
+
+    <h2 class="anton t-h2 max-w-[20ch] mb-8">
+      THREE REAL CREATORS.<br/>
+      THREE <span class="mark">MONTHLY BILLS</span><br/>
+      THEY KILLED.
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-4 md:gap-5">
+      <figure class="letter">
+        <blockquote>
+          Thank you so much for the Content Creator Templates Library! My daughter and I got more
+          editing work done today in <strong>3 hours</strong> than we normally do in 3&nbsp;days.
+        </blockquote>
+        <figcaption class="from">Hilda Schlueter · Online course creator</figcaption>
+      </figure>
+      <figure class="letter">
+        <blockquote>
+          My videos wouldn't look <strong>half</strong> as good as they do if it wasn't for the
+          Content Creator Templates Library. I lean into them heavily for every edit I&nbsp;do.
+        </blockquote>
+        <figcaption class="from">Matt Lilley · ContentCreator.com student</figcaption>
+      </figure>
+      <figure class="letter">
+        <blockquote>
+          The Content Creator Templates Library is a <strong>fantastic</strong> resource. I don't need any
+          other digital asset subscriptions on my hard drive.
+        </blockquote>
+        <figcaption class="from">Brady Hales · ContentCreator.com student</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============== GUARANTEE + FAQ — PAGE 14 ============== -->
+<section class="relative">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <div class="ch-marker">
+      <div class="left">PAGE 14 · GUARANTEE + FAQ</div>
+      <div class="design-credit"><span class="mark">Design by Opia Austin</span></div>
+      <div class="t-page anton opacity-15 leading-none">14</div>
+    </div>
+
+    <!-- Guarantee block -->
+    <div class="ruled p-6 md:p-10 mb-12 grid md:grid-cols-12 gap-6 items-center">
+      <div class="md:col-span-3 flex md:justify-center">
+        <div class="relative w-[200px] h-[200px] flex items-center justify-center">
+          <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full">
+            <defs>
+              <path id="circle" d="M 100,100 m -82,0 a 82,82 0 1,1 164,0 a 82,82 0 1,1 -164,0" fill="none"/>
+            </defs>
+            <text font-family="JetBrains Mono" font-size="11" font-weight="700" letter-spacing="6" fill="#1a2920">
+              <textPath href="#circle" startOffset="0">
+                100% MONEY-BACK · 30-DAY · NO-QUESTIONS-ASKED ·&nbsp;
+              </textPath>
+            </text>
+          </svg>
+          <div class="text-center leading-[0.95]">
+            <div class="anton text-[58px]" style="color:var(--r);">100%</div>
+            <div class="mono text-[10px] uppercase font-bold tracking-widest mt-1">Money back</div>
+          </div>
+        </div>
+      </div>
+      <div class="md:col-span-9">
+        <h2 class="anton t-h3 max-w-[24ch]">CANCEL ANY TIME. <span class="mark-r">REFUNDED FULLY</span> ON UNUSED CREDITS WITHIN 30 DAYS.</h2>
+        <p class="mt-4 text-[15.5px] leading-[1.55] max-w-[60ch] muted-k">
+          PromptEdit is built on customer satisfaction. Cancel a subscription any time. Within 30 days of
+          signing up we'll refund unused credits — no catch, no questions. Spent credits are
+          non-refundable — same as gas. Once driven, the trip is yours.
+        </p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="grid md:grid-cols-12 gap-6 md:gap-10">
+      <div class="md:col-span-4">
+        <h3 class="anton t-h3 max-w-[14ch]">FREQUENTLY ASKED.<br/><span class="mark">HONESTLY ANSWERED.</span></h3>
+        <p class="mt-4 text-[14.5px] muted-k max-w-[36ch]">Anything missing? Email <a class="underline" href="/cdn-cgi/l/email-protection#b0d8d9f0c0c2dfddc0c4d5d4d9c49ed3dfdd"><span class="__cf_email__" data-cfemail="ee8687ae9e9c81839e9a8b8a879ac08d8183">[email&#160;protected]</span></a> — a real editor on our team answers within a day.</p>
+      </div>
+      <div class="md:col-span-8 border-t-[3px] border-b-[3px] border-[#1a2920]">
+        <div class="qa"><div class="q">What is PromptEdit.com?</div><p class="a">One place to access every major AI tool — image, video, audio, music, voice. Buy credits once, use them anywhere on the site. No subscription required.</p></div>
+        <div class="qa"><div class="q">Can I use the output commercially?</div><p class="a">Yes — every generation is wrapped in a commercial license. Use it for social posts, client work, paid ads, the lot.</p></div>
+        <div class="qa"><div class="q">Is the quality different from the tool's own site?</div><p class="a">No. We pipe through the same model APIs the source providers expose. Same output quality, one balance, no extra accounts.</p></div>
+        <div class="qa"><div class="q">What is the Content Creator Templates Library?</div><p class="a">100,000+ professionally-designed editing assets — LUTs, SFX, text animations, overlays, animated backgrounds — included with the monthly plan. Drag-and-drop in any editor.</p></div>
+        <div class="qa"><div class="q">Are there limits on downloads?</div><p class="a">No. Unlimited downloads. Unlimited usage. On the monthly plan you can pull every asset you need, on every project, forever.</p></div>
+        <div class="qa"><div class="q">Will the templates work in my editing platform?</div><p class="a">Yes — Premiere Pro, DaVinci Resolve, Final Cut Pro, CapCut. Every pack is labelled with its compatible app upfront.</p></div>
+        <div class="qa"><div class="q">Can I cancel any time?</div><p class="a">One click in your account. Within 30 days of signup, your unused credits get refunded too.</p></div>
+        <div class="qa"><div class="q">What happens to my downloaded templates if I cancel?</div><p class="a">Anything you've already downloaded is yours to keep and keep using. Subscriptions gate access going forward — not what's already on your drive.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FINAL ORDER — BACK COVER ============== -->
+<section class="inv border-t-[3px] border-[#efe9d9]">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="grid md:grid-cols-12 gap-8 md:gap-12 items-end">
+      <div class="md:col-span-8">
+        <div class="mono text-[11px] tracking-[.12em] uppercase font-bold mb-5" style="color:var(--y);">※ BACK COVER · LAST PAGE · ACT NOW</div>
+        <h2 class="anton t-h1 max-w-[14ch]" style="color:var(--y);">
+          STEP IN.<br/>
+          <span class="mark-r" style="color:var(--y);">STOP RENTING TOOLS.</span>
+        </h2>
+        <p class="mt-6 text-[16px] leading-[1.55] max-w-[52ch]" style="color:var(--muted-c);">
+          The existing-student offer: <strong style="color:var(--y);">$98 unlocks $110 in credits.</strong> Use them on any tool.
+          Credits never expire. No subscription required.
+        </p>
+      </div>
+      <div class="md:col-span-4">
+        <div class="ruled-blk p-5" style="border-color:var(--y);">
+          <div class="mono text-[11px] uppercase tracking-[.12em] font-bold" style="color:var(--y);">STUDENT OFFER · 10% OFF</div>
+          <form class="mt-3 space-y-3" onsubmit="event.preventDefault()">
+            <input type="email" placeholder="you@studio.com" class="w-full bg-transparent text-[15px] px-3 py-2.5 outline-none"
+                   style="border:2px solid var(--y);color:var(--bone);"/>
+            <button class="btn btn-y w-full justify-center">Claim $110 in credits →</button>
+            <div class="mono text-[10px]" style="color:var(--muted-c);">One-time payment · 30-day money-back on unused credits</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== COLOPHON / FOOTER ============== -->
+<footer class="relative border-t-[3px] border-[#1a2920]">
+  <div class="max-w-[1320px] mx-auto px-5 md:px-8 py-12">
+    <div class="grid md:grid-cols-12 gap-8">
+      <div class="md:col-span-4">
+        <a href="#top" class="flex items-center gap-3">
+          <span class="inline-block w-7 h-7 bg-[#1a2920]"></span>
+          <span class="anton text-[26px] leading-none">PROMPTEDIT</span>
+        </a>
+        <p class="mt-4 text-[14px] leading-[1.55] max-w-[36ch]">The catalog of pay-as-you-make AI tools. One credit balance. Zero subscriptions.</p>
+        <p class="mono text-[11px] muted-k mt-6 leading-[1.55]">© 2025 Paul Xavier International LLC</p>
+      </div>
+      <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-[14px]">
+        <div>
+          <div class="mono text-[11px] muted-k mb-3 uppercase tracking-[.12em] font-bold">PAGES</div>
+          <ul class="space-y-2">
+            <li><a href="#image" class="hover:underline">02 · Image</a></li>
+            <li><a href="#video" class="hover:underline">04 · Video</a></li>
+            <li><a href="#audio" class="hover:underline">06 · Audio</a></li>
+            <li><a href="#plugins" class="hover:underline">08 · Plug-ins</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="mono text-[11px] muted-k mb-3 uppercase tracking-[.12em] font-bold">ORDER</div>
+          <ul class="space-y-2">
+            <li><a href="#order" class="hover:underline">10 · Credit packs</a></li>
+            <li><a href="#order" class="hover:underline">10 · Monthly plan</a></li>
+            <li><a href="#library" class="hover:underline">12 · Templates</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="mono text-[11px] muted-k mb-3 uppercase tracking-[.12em] font-bold">CO.</div>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">About</a></li>
+            <li><a href="#" class="hover:underline">AI Creator Course</a></li>
+            <li><a href="#" class="hover:underline">Status</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="mono text-[11px] muted-k mb-3 uppercase tracking-[.12em] font-bold">LEGAL</div>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">Terms</a></li>
+            <li><a href="#" class="hover:underline">Privacy</a></li>
+            <li><a href="#" class="hover:underline">Earnings disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr class="mt-10"/>
+
+    <div class="colophon mt-6">
+      <p><strong>COLOPHON.</strong> Design study prepared by Opia Austin for PromptEdit’s pay-as-you-make catalog brief. Set in Anton, Inter, and JetBrains Mono across a saffron canvas with jet-black accents.</p>
+      <p class="mt-2">All interface concepts, copy, and layout treatments showcased here were crafted specifically for this job submission. Assets are prototypes—no commercial claims implied.</p>
+      <p class="mt-2">Questions about this presentation or collaboration opportunities? Email <a href="mailto:opiaaustin@gmail.com" class="underline">opiaaustin@gmail.com</a>. Further usage requires written permission from the designer.</p>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href').slice(1);
+      const el = id && document.getElementById(id);
+      if(el){ e.preventDefault(); window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 72, behavior:'smooth'}); }
+    });
+  });
+</script>
+</body>
+</html>

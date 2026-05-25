@@ -4,7 +4,7 @@ A frontend redesign of **PromptEdit**, a marketplace for AI video prompts, DaVin
 
 ## Live Demo
 
-👉 **[View Live on Netlify](#)** ← swap in your link
+👉 **[View Live on Netli](https://aicreatorcourseui.netlify.app/)** ← swap in your link
 
 ## The Problem
 
